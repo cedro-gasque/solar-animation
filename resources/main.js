@@ -1,9 +1,14 @@
-document.write('<canvas id="c"></canvas>');
 var ca = document.getElementById('c');
 var c = ca.getContext('2d');
+var recording = {
+    ramses: document.getElementById('ramsesRecording'),
+    evie: document.getElementById('evieRecording');
+};
 function resize () {
     ca.width = window.innerWidth;
     ca.height = window.innerHeight;
+    c.fillStyle = 'black';
+    c.fillRect(0, 0, ca.width, ca.height);
 }
 var bodsty = document.body.style;
 bodsty.padding = 0;
@@ -17,39 +22,51 @@ function delay (time, callback, lastTime) {
         callback();
         console.log(delayleft);
     } else {
-        setTimeout(function () {delay(delayleft, callback, date)}, 1);
+        requestAnimationFrame((function () {delaythis.delayleft, this.callback, this.date);}).bind({delayleft: delayleft, callback: callback, date: date}));
     }
 }
-function rectanglered () {
-    c.fillStyle = 'red';
+var spaceship = new (function () {
+    this.img = new Image();
+    this.img.onload = function () {
+        this.src = 'https://doc-0o-c0-docs.googleusercontent.com/docs/securesc/gn79j6fod0m18ohkbdjgqpe999vtiuco/kfuiuagdbkn8p198jlp1phkqdppon4sk/1414188000000/15974427263758705725/15974427263758705725/0BwvXG4rIcXxnSnZwM3RjUEc5NVk?e=download';
+    };
+    this.angle = 0;
+    this.x = 0;
+    this.draw = function (context) {
+        context.save();
+        context.translate(this.x, ca.height/2);
+        context.rotate(this.angle);
+        context.drawImage(this.image, -this.image.width/2, -this.image.height/2, this.image.width, this.image.height);
+        context.restore();
+    };
+})();
+var requestToken = 0;
+function drawEvie () {
+    c.fillStyle = 'black';
     c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectangleblue, +new Date());
-}
-function rectangleblue () {
-    c.fillStyle = 'blue';
-    c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectangleorange, +new Date());
-}
-function rectangleorange () {
-    c.fillStyle = 'orange';
-    c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectanglegreen, +new Date());
-}
-function rectanglegreen () {
-    c.fillStyle = 'green';
-    c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectanglepurple, +new Date());
-}
-function rectanglepurple () {
-    c.fillStyle = 'purple';
-    c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectangleyellow, +new Date());
-}
-function rectangleyellow () {
     c.fillStyle = 'yellow';
-    c.fillRect(0, 0, ca.width, ca.height);
-    delay(1, rectanglered, +new Date());
+    c.beginPath();
+    c.arc(ca.width/2, ca.height/2, 20, 0, Math.PI*2);
+    c.fill();
+    if (spaceship.x < ca.width/2-100) spaceship.x+=5;
+    else {
+        recording.evie.play();
+        delay(recording.evie.length + 1000, function () {
+            cancelAnimationFrame(requestToken);
+            ramsesAnimation();
+        }, +new Date());
+    }
+    spaceship.draw(c);
+    return requestAnimationFrame(drawEvie);
 }
-rectanglered();
-delay(5000, rectanglered, +new Date());
+function evieAnimation () {
+    c.fillStyle = 'black';
+    c.fillRect(0, 0, ca.width, ca.height);
+    requestToken = drawEvie();
+    
+}
+function ramsesAnimation () {
+    
+}
+document.body.onload = evieAnimation;
 window.addEventListener('resize', resize, false);
