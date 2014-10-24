@@ -2,7 +2,7 @@ var ca = document.getElementById('c');
 var c = ca.getContext('2d');
 var recording = {
     ramses: document.getElementById('ramsesRecording'),
-    evie: document.getElementById('evieRecording');
+    evie: document.getElementById('evieRecording')
 };
 function resize () {
     ca.width = window.innerWidth;
