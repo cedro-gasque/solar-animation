@@ -68,5 +68,4 @@ function evieAnimation () {
 function ramsesAnimation () {
     
 }
-document.body.onload = evieAnimation;
 window.addEventListener('resize', resize, false);
