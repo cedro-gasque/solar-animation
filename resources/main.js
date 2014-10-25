@@ -26,10 +26,7 @@ function delay (time, callback, lastTime) {
     }
 }
 var spaceship = new (function () {
-    this.img = new Image();
-    this.img.onload = function () {
-        this.src = 'https://doc-0o-c0-docs.googleusercontent.com/docs/securesc/gn79j6fod0m18ohkbdjgqpe999vtiuco/kfuiuagdbkn8p198jlp1phkqdppon4sk/1414188000000/15974427263758705725/15974427263758705725/0BwvXG4rIcXxnSnZwM3RjUEc5NVk?e=download';
-    };
+    this.img = document.getElementById('spaceship');
     this.angle = 0;
     this.x = 0;
     this.draw = function (context) {
