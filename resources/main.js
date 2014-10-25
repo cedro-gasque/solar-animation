@@ -22,7 +22,7 @@ function delay (time, callback, lastTime) {
         callback();
         console.log(delayleft);
     } else {
-        requestAnimationFrame((function () {delaythis.delayleft, this.callback, this.date);}).bind({delayleft: delayleft, callback: callback, date: date}));
+        requestAnimationFrame((function () {delay(this.delayleft, this.callback, this.date);}).bind({delayleft: delayleft, callback: callback, date: date}));
     }
 }
 var spaceship = new (function () {
